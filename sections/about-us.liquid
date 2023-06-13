@@ -1,0 +1,84 @@
+<!-- about_us.liquid -->
+<div class="grid-main-section">
+  <h2>{{ section.settings.title }}</h2>
+{% for block in section.blocks %}
+            {% assign even_odd = forloop.index | modulo: 2 %}
+            {% capture  content %}
+              <div class="col-md-6">
+              <div class="grid-content">
+                <h2>{{ block.settings.title }}</h2>
+                <p>{{ block.settings.description }} 
+              </div>
+              </div>
+            {% endcapture %}
+            {% capture  img %}
+                 <div class="col-md-6">
+                    {% if block.settings.image1 != blank %}
+                        <a href="{{ block.settings.img_link1 }}">
+                          <img decoding="async"
+                            src="{{ block.settings.image1 | img_url:'' }}"
+                            alt="PTI WebTech firebase_icon-1" loading="lazy">
+                        </a>{{ block.settings.img_text1 }} 
+                    {% endif %}
+                    </div>
+            {% endcapture %}
+        <div class="gid-section">
+          <div class="grid_block">
+            {% if even_odd == 0 %}
+              {{ content }}
+              {{ img }}
+            {% else %}
+               {{ img }}
+               {{ content }}
+            {% endif %}
+          </div>
+        </div> 
+      {% endfor %}
+      </div>
+
+      {% schema %}
+        {
+          "name": "About Us",
+          "settings": [
+            {
+                "type":"text",
+                "id":"title",
+                "label":"Title"
+            }
+          ],
+          "blocks":[
+            {
+              "type":"text",
+              "name":"Block",
+              "settings":[
+                {
+                  "type":"text",
+                  "id":"title",
+                  "label":"Title"
+                },
+                {
+                  "type":"textarea",
+                  "id":"description",
+                  "label":"Description"
+                },
+                {
+                  "type":"image_picker",
+                  "id":"image1",
+                  "label":"Image1"
+                }
+              ]
+            }
+          ],
+          "presets":[
+            {
+              "name":"About Us"
+            }
+          ]
+        }
+      {% endschema %}
+      
+      {% stylesheet %}
+      {% endstylesheet %}
+      
+      {% javascript %}
+      {% endjavascript %}

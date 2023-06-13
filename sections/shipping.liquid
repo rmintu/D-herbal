@@ -1,0 +1,92 @@
+<!-- shipping.liquid -->
+<div class="grid-shippings">
+  <div class=grid-container>
+    <div class="grid-row">
+      {% for block in section.blocks %}
+      <div class="grid-column col-md-4">
+        <ul class="grid-image-icons">
+          <div class="grid-images-icon wow fadeInDown" data-wow-duration="1.5s">
+            {%- if block.settings.image != blank -%}
+            {%- assign image_size_2x = block.settings.image_width | times: 2 | at_most: 5760 -%}
+            <img srcset="{{ block.settings.image | image_url: width: block.settings.image_width }} 1x, {{ block.settings.image | image_url: width: image_size_2x }} 2x"
+                 src="{{ block.settings.image | image_url: width: block.settings.image_width }}"
+                 loading="lazy"
+                 class="images-icon"
+                 width="{{ block.settings.image.width }}"
+                 height="{{ block.settings.image.height }}"
+                 alt="{{ block.settings.image.alt | default: shop.name | escape }}"
+                 style="width:{{block.settings.image_width}}px; height:auto;";
+                 >
+            {%- endif -%}
+          </div>
+          <li>
+            <div class="grid-icon-details wow fadeInDown" data-wow-duration="1.5s">
+              <h3 style="font-size:{{block.settings.title_width}}px">{{block.settings.title}}</h3>
+              <p>{{block.settings.description}}</p>
+            </div>
+          </li>
+        </ul>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+   "name":"Shipping",
+   "blocks":[
+      {
+         "type":"Block",
+         "name":"Shipping details",
+         "settings":[
+            {
+               "type":"image_picker",
+               "id":"image",
+               "label":"Image"
+            },
+            {
+               "type":"range",
+               "id":"image_width",
+               "min":50,
+               "max":250,
+               "step":10,
+               "default":100,
+			   "unit": "px",
+               "label":"Image width"
+            },
+            {
+               "type":"text",
+               "id":"title",
+               "label":"Title"
+            },
+            {
+               "type":"range",
+               "id":"title_width",
+               "min":14,
+               "max":50,
+               "step":2,
+               "default":16,
+               "label":"Title Width"
+            },
+            {
+               "type":"textarea",
+               "id":"description",
+               "label":"Description"
+            }
+         ]
+      }
+   ],
+   "presets":[
+      {
+         "name":"Shipping"
+      }
+   ]
+}
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

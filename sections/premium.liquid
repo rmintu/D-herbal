@@ -1,0 +1,106 @@
+<!-- Premium.liquid -->
+<div class="premium"{% if section.settings.image != blank %}style="background-image:url({{section.settings.image | img_url:''}})"{%  endif %}>
+<div class="premium-details rtgdfgfd">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4">
+        <div class="premium-heading wow fadeInDown" data-wow-duration="1.5s">
+          {% if section.settings.title != blank %}
+          <h2>{{section.settings.title}}</h2>
+          {% endif %}
+        </div>
+      </div>
+      <div class="col-md-8">
+        <div class="row">
+          {% for block in section.blocks %}
+          <div class="col-md-6">
+            <div class="content">
+              {%- if block.settings.image1 != blank -%}
+                        <img class="wow fadeInDown" data-wow-duration="1.5s"
+                        srcset="{%- if block.settings.image1.width >= 165 -%}{{ block.settings.image1 | image_url: width: 165 }} 165w,{%- endif -%}
+                        {%- if block.settings.image1.width >= 360 -%}{{ block.settings.image1 | image_url: width: 360 }} 360w,{%- endif -%}
+                        {%- if block.settings.image1.width >= 535 -%}{{ block.settings.image1 | image_url: width: 535 }} 535w,{%- endif -%}
+                        {%- if block.settings.image1.width >= 750 -%}{{ block.settings.image1 | image_url: width: 750 }} 750w,{%- endif -%}
+                        {%- if block.settings.image1.width >= 1070 -%}{{ block.settings.image1 | image_url: width: 1070 }} 1070w,{%- endif -%}
+                        {%- if block.settings.image1.width >= 1500 -%}{{ block.settings.image1 | image_url: width: 1500 }} 1500w,{%- endif -%}
+                        {{ block.settings.image1 | image_url }} {{ block.settings.image1.width }}w"
+                        src="{{ block.settings.image1 | image_url: width: 750 }}"
+                        sizes="(min-width: {{ settings.page_width }}px) {{ settings.page_width | minus: 100 | divided_by: 2 }}px, (min-width: 750px) calc(50vw - 130px), calc(50vw - 55px)"
+                        alt=""
+                        loading="lazy"
+                        width="{{ block.settings.image1.width }}"
+                        height="{{ block.settings.image1.height }}"
+                        >
+              {% endif %}
+             {%- if block.settings.image1 != blank -%}
+              <h3 class="wow fadeInDown" data-wow-duration="1.5s">{{block.settings.title1}}</h3>
+               {% else %}
+              <h3 class="wow fadeInDown" data-wow-duration="1.5s">title here</h3>
+              {% endif %}
+               {%- if block.settings.image1 != blank -%}
+              <p class="wow fadeInDown" data-wow-duration="1.5s">{{block.settings.description}}</p>
+                 {% else %}
+                 <p class="wow fadeInDown" data-wow-duration="1.5s">Lorem ipsum dolor sit amet, consectetur adipiscing dolore magna aliqua</p>
+              {% endif %}
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+{% schema %}
+{
+ "name":"Premium",
+ "settings":[
+    {
+       "type":"text",
+       "id":"title",
+       "label":"Title"
+    },
+    {
+       "type":"image_picker",
+       "id":"image",
+       "label":"Image"
+    }
+ ],
+ "blocks":[
+    {
+       "type":"Block",
+       "name":"icon_details",
+       "settings":[
+          {
+             "type":"image_picker",
+             "id":"image1",
+             "label":"Image"
+          },
+          {
+             "type":"text",
+             "id":"title1",
+            "default":"title here",
+             "label":"Title"
+          },
+          {
+             "type":"textarea",
+             "id":"description",
+              "default":"Lorem ipsum dolor sit amet, consectetur adipiscing dolore magna aliqua",
+             "label":"Description"
+          }
+       ]
+    }
+ ],
+ "presets":[
+    {
+       "name":"Premium"
+    }
+ ]
+}
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

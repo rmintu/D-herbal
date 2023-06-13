@@ -1,0 +1,283 @@
+<!-- slide_image.liquid -->
+{% if section.settings.enable_image %}
+<div class="grid-slide-newimages" >
+  {% assign  image_data = section.settings.image %} 
+        {% if image_data != blank %}
+             <img class="wow fadeInDown" data-wow-duration="1.5s"
+            srcset="{% if image_data.width >= 350 %}{{ image_data | image_url: width: 350 }} 350w,{% endif %}
+                   {% if image_data.width >= 750 %}{{ image_data | image_url: width: 750 }} 750w,{% endif %}
+                   {% if image_data.width >= 1100 %}{{ image_data | image_url: width: 1100 }} 1100w,{% endif %}
+                   {% if image_data.width >= 1500 %}{{ image_data | image_url: width: 1500 }} 1500w,{% endif %}
+                   {% if image_data.width >= 2200 %}{{ image_data | image_url: width: 2200 }} 2200w,{% endif %}
+                   {% if image_data.width >= 3000 %}{{ image_data | image_url: width: 3000 }} 3000w,{% endif %}
+                   {{ image_data | image_url }} {{ image_data.width }}w"
+           sizes="(min-width: {{ settings.page_width }}px) {{ settings.page_width | minus: 100 }}px, (min-width: 750px) calc(100vw - 10rem), 100vw"
+           src="{{ image_data | image_url: width: 1100 }}"
+           loading="lazy"
+           width="{{ image_data.width }}"
+           height="{{ image_data.height }}"
+           alt="{{ image_data.alt | escape }}"
+           >
+  {% endif %}
+  {% if section.settings.enable_container %}
+  <div class="grid-container">
+  <div class="grid-banner-details">
+  <h2>{{ section.settings.title }}</h2>
+  <a href="{{ section.settings.button_link }}">{{section.settings.button}}</a>
+  </div>
+  </div>
+  {% endif %}
+</div>
+{% else %}
+<div class="grid-banner-image">
+  <ul class="grid-one-time slider">
+    {% for block in section.blocks %}
+    <li class="slide">
+      <div class="grid-slide-newimages">
+        {%- if block.settings.image2 != blank -%}
+            <img 
+              srcset="{% if block.settings.image2.width >= 350 %}{{ block.settings.image2 | image_url: width: 350 }} 350w,{% endif %}
+              {% if block.settings.image2.width >= 750 %}{{ block.settings.image2 | image_url: width: 750 }} 750w,{% endif %}
+              {% if block.settings.image2.width >= 1100 %}{{ block.settings.image2 | image_url: width: 1100 }} 1100w,{% endif %}
+              {% if block.settings.image2.width >= 1500 %}{{ block.settings.image2 | image_url: width: 1500 }} 1500w,{% endif %}
+              {% if block.settings.image2.width >= 2200 %}{{ block.settings.image2 | image_url: width: 2200 }} 2200w,{% endif %}
+              {% if block.settings.image2.width >= 3000 %}{{ block.settings.image2 | image_url: width: 3000 }} 3000w,{% endif %}
+              {{ block.settings.image2 | image_url }} {{ block.settings.image2.width }}w"
+           sizes="(min-width: {{ settings.page_width }}px) {{ settings.page_width | minus: 100 }}px, (min-width: 750px) calc(100vw - 10rem), 100vw"
+           src="{{ block.settings.image2 | image_url: width: 1100 }}"
+           loading="lazy"
+           width="{{ block.settings.image2.width }}"
+           height="{{ block.settings.image2.height }}"
+           alt="{{ block.settings.image2.alt | escape }}"
+           >
+        {% endif %}
+      {% if block.settings.enable_container %}
+        <div class="grid-container">
+          <div class="grid-banner-details">
+            <h2>{{block.settings.title2}}</h2>
+            <a href="{{ block.settings.button_link1 }}">{{block.settings.button1}}</a>
+          </div>
+        </div>
+        {% endif %}
+      </div>
+    </li>
+    {% endfor %}  
+    <button class="btn-slide prev"><i class="fas fa-3x fa-chevron-circle-left"></i></button>
+    <button class="btn-slide next"><i class="fas fa-3x fa-chevron-circle-right"></i></button>    
+  </ul>
+  <div class="dots-container">
+   <span class="dot active" data-slide="0"></span>
+   <span class="dot" data-slide="1"></span>
+   <span class="dot" data-slide="2"></span>
+<span class="dot" data-slide="3"></span>
+</div>
+</div>
+{% endif %}
+
+<style>
+   h2{
+    text-align: center;
+    font-size: 2rem;
+    line-height: 3.5;
+}
+.slider{
+    position: relative;
+     max-width: 100%; 
+    height: 600px;  padding: 0;
+    margin: 0 auto;
+    overflow: hidden;
+}
+.grid-slide-newimages {
+    height: 100%;
+    width: 100%;
+}
+.grid-slide-newimages img {
+    width: 100%;
+    height: 100%;
+}
+.slide{ 
+    position: absolute;
+    top:0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 1s;
+}
+.slide > img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+button{
+    background: none;
+    border: none;
+}
+button .fas{
+    color: rgba(255, 255, 255, .5);
+}
+.btn-slide{
+    position:absolute;
+    top:50%;
+    z-index: 10;
+    background: #878787;
+    height: 5.5rem;
+    width: 5.5rem;
+    cursor: pointer;
+}
+.prev{
+    left:3rem;
+    transform: translate(-50%, -50%);
+}
+.next{
+    right: 3rem;
+    transform: translate(50%, -50%); 
+}
+.dots-container{
+  display: none;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+.dot{
+    width: 25px;
+    height: 5px;
+    margin: 15px 5px;
+    border-radius: .5rem;
+    background: rgba(39,39,39, .5);
+    cursor: pointer;
+}
+.dot.active{
+background:#272727;
+}
+</style>
+
+<script>
+   function Slider() {
+    const carouselSlides = document.querySelectorAll('.slide');
+    const btnPrev = document.querySelector('.prev');
+    const btnNext = document.querySelector('.next');
+    const dotsSlide = document.querySelector('.dots-container');
+    let currentSlide = 0;
+  
+    const activeDot = function (slide) {
+        document.querySelectorAll('.dot').forEach(dot => dot.classList.remove('active'));
+        document.querySelector(`.dot[data-slide="${slide}"]`).classList.add('active');
+    };
+    activeDot(currentSlide);
+
+    const changeSlide = function (slides) {
+        carouselSlides.forEach((slide, index) => (slide.style.transform = `translateX(${100 * (index - slides)}%)`));
+    };
+    changeSlide(currentSlide);
+
+    btnNext.addEventListener('click', function () {
+        currentSlide++; 
+        if (carouselSlides.length - 1 < currentSlide) {
+            currentSlide = 0;
+        };
+        changeSlide(currentSlide);
+        activeDot(currentSlide);
+});
+    btnPrev.addEventListener('click', function () {
+        currentSlide--;
+        if (0 >= currentSlide) {
+            currentSlide = 0;
+        }; 
+        changeSlide(currentSlide);
+        activeDot(currentSlide);
+    });
+
+    dotsSlide.addEventListener('click', function (e) {
+        if (e.target.classList.contains('dot')) {
+            const slide = e.target.dataset.slide;
+            changeSlide(slide);
+            activeDot(slide);
+        }
+    });
+  };
+Slider();
+</script>
+
+{% schema %}
+{
+   "name":"Slider",
+   "settings":[
+      {
+         "type":"checkbox",
+         "id":"enable_image",
+         "label":"Enable Image"
+      },
+      {
+         "type":"image_picker",
+         "id":"image",
+         "label":"Image"
+      },
+      {
+         "type":"checkbox",
+         "id":"enable_container",
+         "label":"Enable Overlay Container"
+      },
+      {
+         "type":"text",
+         "id":"title",
+         "label":"Title"
+      },
+      {
+         "type":"text",
+         "id":"button",
+         "label":"Button"
+      },
+      {
+         "type":"url",
+         "id":"button_link",
+         "label":"Button Link"
+      }
+   ],
+   "blocks":[
+      {
+         "type":"Block",
+         "name":"Slider Image",
+         "settings":[
+            {
+               "type":"image_picker",
+               "id":"image2",
+               "label":"Image"
+            },
+            {
+               "type":"checkbox",
+               "id":"enable_container",
+               "label":"Enable Overlay Container"
+            },
+            {
+               "type":"text",
+               "id":"title2",
+               "label":"Title"
+            },
+            {
+               "type":"text",
+               "id":"button1",
+               "label":"Button"
+            },
+            {
+               "type":"url",
+               "id":"button_link1",
+               "label":"Button Link"
+            }
+         ]
+      }
+   ],
+   "presets":[
+      {
+         "name":"Slider"
+      }
+   ]
+}
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

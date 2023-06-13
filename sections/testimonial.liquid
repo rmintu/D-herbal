@@ -1,0 +1,298 @@
+<!-- Testimonial.liquid  -->
+<div class="grid-testimonial">
+  <div class="grid-container">
+  <div class="grid-testimonial-heading wow fadeInDown" data-wow-duration="1.5s">
+   {% if section.settings.title != blank %}
+    <h2>{{section.settings.title}}</h2>
+    {% endif %}
+  </div> 
+
+  <div class="grid-testimonial-details">
+    <button class="slider__control prev"><i class="fa-solid fa-chevron-left"></i></button>
+    <button class="slider__control next"><i class="fa-solid fa-chevron-right"></i></button>
+    <ul class="grid-multiple-items slider__container" data-multislide="false" data-step="3">
+      {% for block in section.blocks %}
+      <li class="wow fadeInDown slider__item" data-wow-duration="1.5s">
+        <div class="col-12">
+          <div class="grid-content  testi_content block-0{{forloop.index}}">
+            <div class="rating rr-{{ block.settings.diff3 }}">
+              {% assign rating = block.settings.diff3 %}
+              {% for i in (1..5) %}   
+              {%if i <= rating %}
+              {% render 'star_review' %}
+              {% else %}
+              {% render 'empty_review' %}
+              {% endif %}
+              {% endfor %}
+            </div>
+          </div>
+        </div>
+        <p>{{block.settings.description}}</p>
+        <h3>{{block.settings.title1}}</h3>
+        {%- if block.settings.image != blank -%}
+                          <img class="pasword-size"
+                            srcset="{%- if block.settings.image.width >= 550 -%}{{ block.settings.image | image_url: width: 550 }} 550w,{%- endif -%}
+                              {%- if block.settings.image.width >= 720 -%}{{ block.settings.image | image_url: width: 720 }} 720w,{%- endif -%}
+                              {%- if block.settings.image.width >= 990 -%}{{ block.settings.image | image_url: width: 990 }} 990w,{%- endif -%}
+                              {%- if block.settings.image.width >= 1100 -%}{{ block.settings.image | image_url: width: 1100 }} 1100w,{%- endif -%}
+                              {%- if block.settings.image.width >= 1500 -%}{{ block.settings.image | image_url: width: 1500 }} 1500w,{%- endif -%}
+                              {%- if block.settings.image.width >= 2200 -%}{{ block.settings.image | image_url: width: 2200 }} 2200w,{%- endif -%}
+                              {%- if block.settings.image.width >= 3000 -%}{{ block.settings.image | image_url: width: 3000 }} 3000w,{%- endif -%}
+                              {{ block.settings.image | image_url }} {{ block.settings.image.width }}w"
+                            src="{{ block.settings.image | image_url: width: 150 }}"
+                            sizes="(min-width: {{ settings.page_width }}px) {% if section.blocks.size == 1 %}calc({{ settings.page_width }}px - 100px){% else %}{{ settings.page_width | minus: 100 | times: 0.67 | round }}px{% endif %}, (min-width: 750px){% if section.blocks.size == 1 %} calc(100vw - 100px){% else %} 500px{% endif %}, calc(100vw - 30px)"
+                            alt="{{ block.settings.description | escape }}"
+                            loading="lazy"
+                            width="{{ block.settings.image.width }}"
+                            height="{{ block.settings.image.height }}"
+                          >
+        {% else %}
+        {% render 'icon_review' %}
+        {% endif %}
+      </li>
+      {% endfor %}
+    </ul>
+  </div>
+</div>
+</div>
+
+
+<style>
+  .slider {
+  position: relative;
+}
+
+.slider__container {
+  cursor: grab;
+  display: flex;
+  overflow: hidden;
+  scroll-behavior: smooth;
+}
+
+.slider__container.dragging {
+  scroll-behavior: auto;
+  cursor: grabbing;
+}
+
+.slider__item {
+  padding: 16px 8px;
+  flex: 0 0 auto;
+  width: calc(100% / 5);
+}
+
+.slider__container[data-step="4"] .slider__item {
+  width: calc(100% / 4);
+}
+
+.slider__container[data-step="3"] .slider__item {
+  width: calc(100% / 3);
+}
+
+.slider__container[data-step="2"] .slider__item {
+  width: calc(100% / 2);
+}
+
+.slider__container[data-step="1"] .slider__item {
+  width: calc(100% / 1);
+}
+
+@media screen and (max-width: 1024px) {
+  .slider__item,
+  .slider__container[data-step="4"] .slider__item {
+    width: calc(100% / 3);
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .slider__item,
+  .slider__container[data-step="4"] .slider__item,
+  .slider__container[data-step="3"] .slider__item {
+    width: calc(100% / 2);
+  }
+}
+@media screen and (max-width: 480px) {
+  .slider__item,
+  .slider__container[data-step="4"] .slider__item,
+  .slider__container[data-step="3"] .slider__item,
+  .slider__container[data-step="2"] .slider__item {
+    width: calc(100% / 1);
+  }
+}
+
+.slider__control {
+  font-size: 16px;
+  border: none;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  color: #000;
+  background: #fff;
+  cursor: pointer;
+  opacity: .5;
+  transition: all .3s;
+}
+
+.slider__control.prev {
+  left: 16px;
+}
+
+.slider__control.next {
+  right: 16px;
+}
+
+.slider__control:hover {
+  opacity: 1;
+  transform: translateY(-50%) scale(1.2);
+}
+
+.slider__item img {
+  -webkit-user-drag: none;
+  -khtml-user-drag: none;
+  -moz-user-drag: none;
+  -o-user-drag: none;
+  user-select: none;
+}
+
+</style>
+
+<script>
+  const sliders = [...document.querySelectorAll(".slider__container")];
+  const sliderControlPrev = [...document.querySelectorAll(".slider__control.prev")];
+  const sliderControlNext = [...document.querySelectorAll(".slider__control.next")];
+  
+  sliders.forEach((slider, i) => {
+    let isDragStart = false,
+        isDragging = false,
+        isSlide = false,
+        prevPageX,
+        prevScrollLeft,
+        positionDiff;
+  
+    const sliderItem = slider.querySelector(".slider__item");
+    var isMultislide = (slider.dataset.multislide === 'true');
+  
+    sliderControlPrev[i].addEventListener('click', () => {
+      if (isSlide) return;
+      isSlide = true;
+      let slideWidth = isMultislide ? slider.clientWidth : sliderItem.clientWidth;
+      slider.scrollLeft += -slideWidth;
+      setTimeout(function(){ isSlide = false; }, 700);
+    });
+  
+    sliderControlNext[i].addEventListener('click', () => {
+      if (isSlide) return;
+      isSlide = true;
+      let slideWidth = isMultislide ? slider.clientWidth : sliderItem.clientWidth ;
+      slider.scrollLeft += slideWidth;
+      setTimeout(function(){ isSlide = false; }, 700);
+    });
+  
+    function autoSlide() {
+      if(slider.scrollLeft - (slider.scrollWidth - slider.clientWidth) > -1 || slider.scrollLeft <= 0) return;
+      positionDiff = Math.abs(positionDiff);
+      let slideWidth = isMultislide ? slider.clientWidth : sliderItem.clientWidth;
+      let valDifference = slideWidth - positionDiff;
+      if(slider.scrollLeft > prevScrollLeft) {
+          return slider.scrollLeft += positionDiff > slideWidth / 5 ? valDifference : -positionDiff;
+      }
+      slider.scrollLeft -= positionDiff > slideWidth / 5 ? valDifference : -positionDiff;
+    }
+  
+    function dragStart(e) {
+      if (isSlide) return;
+      isSlide = true;
+      isDragStart = true;
+      prevPageX = e.pageX || e.touches[0].pageX;
+      prevScrollLeft = slider.scrollLeft;
+      setTimeout(function(){ isSlide = false; }, 700);
+    }
+  
+    function dragging(e) {
+      if(!isDragStart) return;
+      e.preventDefault();
+      isDragging = true;
+      slider.classList.add("dragging");
+      positionDiff = (e.pageX || e.touches[0].pageX) - prevPageX;
+      slider.scrollLeft = prevScrollLeft - positionDiff;
+    }
+  
+    function dragStop() {
+      isDragStart = false;
+      slider.classList.remove("dragging");
+      if(!isDragging) return;
+      isDragging = false;
+      autoSlide();
+    }
+  
+    addEventListener("resize", autoSlide);
+    slider.addEventListener("mousedown", dragStart);
+    slider.addEventListener("touchstart", dragStart);
+    slider.addEventListener("mousemove", dragging);
+    slider.addEventListener("touchmove", dragging);
+    slider.addEventListener("mouseup", dragStop);
+    slider.addEventListener("touchend", dragStop);
+    slider.addEventListener("mouseleave", dragStop);
+  });
+</script>
+
+
+{% schema %}
+{
+   "name":"Testimonial",
+   "settings":[
+      {
+         "type":"text",
+         "id":"title",
+         "label":"Title"
+      }
+   ],
+   "blocks":[
+      {
+         "type":"Block",
+         "name":"Testimonial details",
+         "settings":[
+		    {
+            "type": "range",
+            "id": "diff3",
+            "min": 1,
+            "max": 5,
+            "step": 1,
+            "unit": "px",
+            "label": "star level",
+            "default": 2
+            },
+            {
+               "type":"textarea",
+               "id":"description",
+               "label":"Description"
+            },
+            {
+               "type":"text",
+               "id":"title1",
+               "label":"Title"
+            },
+            {
+               "type":"image_picker",
+               "id":"image",
+               "label":"Image"
+            }
+         ]
+      }
+   ],
+   "presets":[
+      {
+         "name":"Testimonial"
+      }
+   ]
+}
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}
