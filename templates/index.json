@@ -1,3 +1,12 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "225ab87d-ba09-4c1c-b070-e3f33242e848": {
@@ -6,7 +15,7 @@
         "8e8a32d4-9020-48fe-8c37-17633e463e31": {
           "type": "Block",
           "settings": {
-            "image2": "shopify:\/\/shop_images\/slider-img-3.jpg",
+            "image2": "shopify://shop_images/slider-img-3.jpg",
             "enable_container": false,
             "title2": "",
             "button1": "",
@@ -16,7 +25,7 @@
         "050f1f30-f755-4216-a49d-c1cc3e6d9d5b": {
           "type": "Block",
           "settings": {
-            "image2": "shopify:\/\/shop_images\/slider-img-2.jpg",
+            "image2": "shopify://shop_images/slider-img-2.jpg",
             "enable_container": false,
             "title2": "",
             "button1": "",
@@ -26,7 +35,7 @@
         "fc22532a-25ac-41b2-8699-7efe41c7887d": {
           "type": "Block",
           "settings": {
-            "image2": "shopify:\/\/shop_images\/slider-img-1_c2742986-3451-4936-b0bf-fb17d697b184.jpg",
+            "image2": "shopify://shop_images/slider-img-1_c2742986-3451-4936-b0bf-fb17d697b184.jpg",
             "enable_container": false,
             "title2": "",
             "button1": "",
@@ -41,7 +50,7 @@
       ],
       "settings": {
         "enable_image": false,
-        "image": "shopify:\/\/shop_images\/slider-img-3.jpg",
+        "image": "shopify://shop_images/slider-img-3.jpg",
         "enable_container": false,
         "title": "",
         "button": "",
@@ -54,7 +63,7 @@
         "c1a3ca56-f277-4e6f-91ec-ad0314ed1778": {
           "type": "Block",
           "settings": {
-            "image": "shopify:\/\/shop_images\/Vector.png",
+            "image": "shopify://shop_images/Vector.png",
             "image_width": 100,
             "title": "Free Shipping",
             "title_width": 16,
@@ -64,7 +73,7 @@
         "6b3b2e35-6fb5-4487-bac8-d4965087933d": {
           "type": "Block",
           "settings": {
-            "image": "shopify:\/\/shop_images\/Vector_1.png",
+            "image": "shopify://shop_images/Vector_1.png",
             "image_width": 100,
             "title": "Promotion code",
             "title_width": 16,
@@ -74,7 +83,7 @@
         "0175ea4b-f713-486b-9306-b92a7703bc5c": {
           "type": "Block",
           "settings": {
-            "image": "shopify:\/\/shop_images\/Vector_2.png",
+            "image": "shopify://shop_images/Vector_2.png",
             "image_width": 100,
             "title": "Secure Payment",
             "title_width": 16,
@@ -87,8 +96,7 @@
         "6b3b2e35-6fb5-4487-bac8-d4965087933d",
         "0175ea4b-f713-486b-9306-b92a7703bc5c"
       ],
-      "settings": {
-      }
+      "settings": {}
     },
     "collage": {
       "type": "collage",
@@ -131,7 +139,7 @@
     "f2c42f93-d364-47d5-b719-6abc4f5eb30f": {
       "type": "big-banner",
       "settings": {
-        "image2": "shopify:\/\/shop_images\/banner-middle-bg.png",
+        "image2": "shopify://shop_images/banner-middle-bg.png",
         "enable_container": false,
         "title": "",
         "subtitle": "",
@@ -148,7 +156,7 @@
             "diff3": 4,
             "description": "Lorem ipsum dolor sit amet, consectetur\nadipiscing elit, sed do eiusmod tempor\nincididunt ut labore.",
             "title1": "Regina",
-            "image": "shopify:\/\/shop_images\/Profile.jpg"
+            "image": "shopify://shop_images/Profile.jpg"
           }
         },
         "c3e3019a-a419-4265-8b11-f656e9217185": {
@@ -165,7 +173,7 @@
             "diff3": 5,
             "description": "Lorem ipsum dolor sit amet, consectetur\nadipiscing elit, sed do eiusmod tempor\nincididunt ut labore.",
             "title1": "Regina",
-            "image": "shopify:\/\/shop_images\/Profile.jpg"
+            "image": "shopify://shop_images/Profile.jpg"
           }
         },
         "65721748-2b77-46bc-a240-243295023a2d": {
@@ -193,7 +201,7 @@
         "158509b9-4f12-45a7-862b-12a04a82de00": {
           "type": "Block",
           "settings": {
-            "image1": "shopify:\/\/shop_images\/viticon03_1.png",
+            "image1": "shopify://shop_images/viticon03_1.png",
             "title1": "100% pure",
             "description": "Lorem ipsum dolor sit amet, consectetur adipiscing dolore magna aliqua"
           }
@@ -201,7 +209,7 @@
         "8702159e-7c25-4c3e-830a-8dbf84d6f985": {
           "type": "Block",
           "settings": {
-            "image1": "shopify:\/\/shop_images\/viticon01_1.png",
+            "image1": "shopify://shop_images/viticon01_1.png",
             "title1": "Organic",
             "description": "Lorem ipsum dolor sit amet, consectetur adipiscing dolore magna aliqua"
           }
@@ -209,7 +217,7 @@
         "90557c06-b325-4356-9243-0437003d1770": {
           "type": "Block",
           "settings": {
-            "image1": "shopify:\/\/shop_images\/viticon02_1.png",
+            "image1": "shopify://shop_images/viticon02_1.png",
             "title1": "Extraction",
             "description": "Lorem ipsum dolor sit amet, consectetur adipiscing dolore magna aliqua"
           }
@@ -217,7 +225,7 @@
         "f379b6ca-2c9c-42b2-a1d5-390825b8ea2b": {
           "type": "Block",
           "settings": {
-            "image1": "shopify:\/\/shop_images\/viticon04_1.png",
+            "image1": "shopify://shop_images/viticon04_1.png",
             "title1": "Quality manufacturing",
             "description": "Lorem ipsum dolor sit amet, consectetur adipiscing dolore magna aliqua"
           }
@@ -231,7 +239,7 @@
       ],
       "settings": {
         "title": "Premium Features",
-        "image": "shopify:\/\/shop_images\/Rectangle_54_881ac726-fb1c-4e4e-a831-f41ad172a726.png"
+        "image": "shopify://shop_images/Rectangle_54_881ac726-fb1c-4e4e-a831-f41ad172a726.png"
       }
     },
     "featured_collection": {
@@ -267,7 +275,7 @@
       "settings": {
         "heading": "Blog posts",
         "heading_size": "h1",
-        "blog": "news",
+        "blog": "blog",
         "post_limit": 3,
         "columns_desktop": 3,
         "color_scheme": "",
